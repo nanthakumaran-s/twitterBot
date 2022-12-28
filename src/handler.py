@@ -10,5 +10,6 @@ def handler(event, context):
         access_token=keys['access_token'],
         access_token_secret=keys['access_token_secret'],
     )
-    generate(keys['openai_key'])
+    tweet = generate(keys['openai_key'])
+    client.create_tweet(text=tweet)
     
