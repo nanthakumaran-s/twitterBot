@@ -1,4 +1,14 @@
-import os
+import tweepy
+from src.keys import getKeys
+from src.content import generate
 
 def handler(event, context):
-    print(os.getenv("twitter_api_key"))
+    keys = getKeys()
+    client = tweepy.Client(
+        consumer_key=keys['consumer_key'],
+        consumer_secret=keys['consumer_secret'],
+        access_token=keys['access_token'],
+        access_token_secret=keys['access_token_secret'],
+    )
+    generate(keys['openai_key'])
+    
